@@ -48,8 +48,11 @@ def fix_audio_length(source, sample_rate, duration, filename, extension):
     save_audio_file(filename, signal, extension)
 
 
-file_list = get_all_file_path('./dataset', 'wav')
+def play():
+    file_list = get_all_file_path('./dataset', 'wav')
+    for file in file_list:
+        signal, sr = read_audio_file(file, '')
+        fix_audio_length(signal, sr, 40, './dataset/{}-re.wav'.format(get_pure_filename(file)), '')
 
-for file in file_list:
-    signal, sr = read_audio_file(file, '')
-    fix_audio_length(signal, sr, 40, './dataset/{}-re.wav'.format(get_pure_filename(file)), '')
+
+play()
